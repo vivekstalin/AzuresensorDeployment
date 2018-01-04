@@ -1,3 +1,3 @@
 #!/bin/sh
 echo "Inside test.sh file"
-sleep 10m
+sleep 30m
