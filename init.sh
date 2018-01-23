@@ -13,3 +13,4 @@ cp -r /root/demodata.txt .
 cp -r /root/controller_custom_data.txt .
 cp -r /root/sensor_custom_data.txt .
 python cloudAPIAutomation_Azure.py
+echo "Finished cloudAPIAutomation_Azure.py execution"
