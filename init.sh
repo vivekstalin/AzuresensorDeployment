@@ -9,3 +9,4 @@ do
   sleep 5;
 done
 echo "\"Finished vNSP init setup\" string found"
+python cloudAPIAutomation_Azure.py
