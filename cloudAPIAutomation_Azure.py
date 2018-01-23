@@ -16,7 +16,7 @@ print ("\nfound cloud-init-output.log file")
 
 
 with open("/var/log/cloud-init-output.log",'r') as f:
-    while not 'Finished vNSP deployment' in f.read():
+    while not 'Finished vNSP init setup' in f.read():
         f.seek(0,0)
         time.sleep(2)
 
