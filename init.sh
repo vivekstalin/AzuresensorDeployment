@@ -6,7 +6,7 @@ done
 echo "/var/log/cloud-init-output.log file found"
 while ! grep "Finished vNSP init setup" /var/log/cloud-init-output.log
 do
-  sleep 5;
+  sleep 5
 done
 echo "\"Finished vNSP init setup\" string found"
 cp -r /root/demodata.txt .
