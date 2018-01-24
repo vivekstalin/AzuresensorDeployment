@@ -1,12 +1,14 @@
 #!/bin/bash
 while [ ! -f /var/log/cloud-init-output.log ] ;
 do
-      sleep 2
+      sleep 5
+      echo "File /var/log/cloud-init-output.log not created yet...Please wait."
 done
-echo "/var/log/cloud-init-output.log file found"
+echo "File /var/log/cloud-init-output.log got created"
 while ! grep "Finished vNSP init setup" /var/log/cloud-init-output.log
 do
-  sleep 5
+  sleep 10
+  echo "init setup not finished yet...Please wait."
 done
 echo "\"Finished vNSP init setup\" string found"
 cp -r /root/demodata.txt .
