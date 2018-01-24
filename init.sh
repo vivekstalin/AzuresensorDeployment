@@ -7,7 +7,7 @@ done
 echo "File /var/log/cloud-init-output.log got created"
 while ! grep "Finished vNSP init setup" /var/log/cloud-init-output.log
 do
-  sleep 10
+  sleep 5
   echo "init setup not finished yet...Please wait."
 done
 echo "\"Finished vNSP init setup\" string found"
