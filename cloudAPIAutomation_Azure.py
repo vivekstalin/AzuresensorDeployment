@@ -10,17 +10,19 @@ import time
 
 
 while not os.path.isfile("/var/log/cloud-init-output.log"):
-    time.sleep(2)
-print ("\nfound cloud-init-output.log file")
+    time.sleep(5)
+    print ("File /var/log/cloud-init-output.log not created yet.. Please Wait.")
+print ("\nFile cloud-init-output.log is created")
 
 
 
 with open("/var/log/cloud-init-output.log",'r') as f:
     while not 'Finished vNSP init setup' in f.read():
         f.seek(0,0)
-        time.sleep(2)
+        time.sleep(10)
+	print("init setup not finished yet...Please wait".)
 
-    print('\n"Finished vNSP deployment found')
+    print('\n"Finished vNSP init setup.')
 
 
 os.environ['DEMOFILES_PATH'] = os.path.dirname(os.path.abspath(__file__))
