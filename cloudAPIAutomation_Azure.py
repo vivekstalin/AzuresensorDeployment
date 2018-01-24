@@ -20,9 +20,9 @@ with open("/var/log/cloud-init-output.log",'r') as f:
     while not 'Finished vNSP init setup' in f.read():
         f.seek(0,0)
         time.sleep(10)
-	print("init setup not finished yet...Please wait".)
+	print("init setup not finished yet...Please wait.")
 
-    print('\n"Finished vNSP init setup.')
+    print("\nFinished vNSP init setup.")
 
 
 os.environ['DEMOFILES_PATH'] = os.path.dirname(os.path.abspath(__file__))
