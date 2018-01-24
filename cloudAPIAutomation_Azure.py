@@ -193,9 +193,10 @@ if resultObj.get('createdResourceId'):
     write_log("CLOUD PLATFORM TYPE is:"+str(os.environ['CLOUD_PLATFORM']))
     if os.environ['CLOUD_PLATFORM'] == "AZURE":
     	write_log("Executing Azure CLI commands to create controller vm")
-        os.system("echo 'Controller VM details will be displayed below:'")
+        os.system("echo 'Controller VM details will be displayed below. Please wait till the Controller VM gets created and configured'")
         os.system("az vm create -g "+os.environ["VMGROUP_RESOURCE_GROUP"]+" --name "+os.environ["CONTROLLER_NAME"]+" --image "+os.environ["CONTROLLER_IMAGE_ID"]+" --authentication-type ssh "+" --admin-username "+os.environ["CONTROLLER_USER_NAME"]+" --ssh-dest-key-path /home/"+os.environ["CONTROLLER_USER_NAME"]+"/.ssh/authorized_keys"+" --ssh-key-value "+"\""+os.environ["CONTROLLER_SSH_KEY"]+"\""+" --size Standard_E2_v3"+" --nics "+os.environ["DEPLOYMENT_NAME"]+"NICController"+" --location "+os.environ["VMGROUP_LOCATION"]+" --custom-data ./controller_custom_data.txt")
 	write_log("Controller VM is launched")
+	os.system("echo 'Controller VM is launched. Please wait till it gets registered with the Manager and becomes online.'")
     # os.system("cfn-signal -s true " + os.environ["CONTROLLER_WAIT_HANDLE"])
     # os.environ['CONTROLLER_CREATED'] = "0"
 else:
@@ -216,17 +217,20 @@ if added_controller_id > 0:
 
     if "online" in controller_status:
         """ create cluster and send the signal """
+	os.system("echo 'Doing Cluster creation in the Manager. Please wait.'")
         createVMGroup = False
         added_cluster_id = create_cluster(Connection, added_controller_id)
         """ create cluster and send signal end """
         if added_cluster_id > 0:
+	    os.system("echo 'Cluster creation in Manager is successful.'")	
             write_log("Sending the signal for sensor creation")
             write_log("CLOUD PLATFORM TYPE is:"+str(os.environ['CLOUD_PLATFORM']))
 	    if os.environ['CLOUD_PLATFORM'] == "AZURE":
 		write_log("Executing Azure CLI commands to create sensor vm")
-                os.system("echo 'Sensor VM details will be displayed below:'")
+                os.system("echo 'Sensor VM details will be displayed below. Please waut till the VM gets created and configured'")
 	        os.system("az vm create -g "+os.environ["VMGROUP_RESOURCE_GROUP"]+" --name "+os.environ["SENSOR_NAME"]+" --image "+os.environ["SENSOR_IMAGE_ID"]+" --authentication-type password "+" --admin-username "+os.environ["SENSOR_USER_NAME"]+" --admin-password "+os.environ["SENSOR_PASSWD"]+" --size Standard_F8s"+" --nics "+os.environ["DEPLOYMENT_NAME"]+"NICSensor"+" --location "+os.environ["VMGROUP_LOCATION"]+" --custom-data ./sensor_custom_data.txt")
                 write_log("Sensor VM is launched")
+		os.system("echo 'Sensor VM is launched.'")
             	
             # os.system("cfn-signal -s true " + os.environ["CLUSTER_WAIT_HANDLE"])
             if os.getenv("CREATE_VMGROUP", "FALSE") == "TRUE":
