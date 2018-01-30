@@ -26,7 +26,7 @@ with open("/var/log/cloud-init-output.log",'r') as f:
 
 
 os.environ['DEMOFILES_PATH'] = os.path.dirname(os.path.abspath(__file__))
-print ("Running script. The logs will be captured in a file:>>> testdrive.log\n")
+os.system ("echo '\nRunning script. The logs will be captured in a file:>>> testdrive.log\n'")
 
 def write_log(msg):
     logfile = open(os.environ['DEMOFILES_PATH']+"/testdrive.log","a")
