@@ -228,7 +228,7 @@ if added_controller_id > 0:
 	    if os.environ['CLOUD_PLATFORM'] == "AZURE":
 		write_log("Executing Azure CLI commands to create sensor vm")
                 os.system("echo '\n\nPreparing for sensor launch.\n\nSensor VM details will be displayed below.\nPlease wait till the sensor VM gets created and configured'")
-	        os.system("az vm create -g "+os.environ["VMGROUP_RESOURCE_GROUP"]+" --name "+os.environ["SENSOR_NAME"]+" --image "+os.environ["SENSOR_IMAGE_ID"]+" --authentication-type password "+" --admin-username "+os.environ["SENSOR_USER_NAME"]+" --admin-password "+os.environ["SENSOR_PASSWD"]+" --size Standard_F8s"+" --nics "+os.environ["DEPLOYMENT_NAME"]+"NICSensor "+" --location "+os.environ["VMGROUP_LOCATION"]+" --custom-data ./sensor_custom_data.txt")
+	        os.system("az vm create -g "+os.environ["VMGROUP_RESOURCE_GROUP"]+" --name "+os.environ["SENSOR_NAME"]+" --image "+os.environ["SENSOR_IMAGE_ID"]+" --authentication-type password "+" --admin-username "+os.environ["SENSOR_USER_NAME"]+" --admin-password "+os.environ["SENSOR_PASSWD"]+" --size Standard_F4s"+" --nics "+os.environ["DEPLOYMENT_NAME"]+"NICSensor "+" --location "+os.environ["VMGROUP_LOCATION"]+" --custom-data ./sensor_custom_data.txt")
                 write_log("Sensor VM is launched. Deployment is Successful and completed")
 		os.system("echo '\nSuccess. Sensor VM is launched.'")
             	
